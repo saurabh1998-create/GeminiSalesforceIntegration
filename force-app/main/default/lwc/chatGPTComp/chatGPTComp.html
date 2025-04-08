@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
 
     <lightning-card title="Chat with GPT" icon-name="utility:chat">
 
@@ -18,10 +18,42 @@
 
         <template if:true={getResponsefromGPT} >
             <lightning-card class="slds-m-around_small">
-                <div class="slds-m-around_medium">
-                    {getResponsefromGPT}</div>
+                <div
+                    class="slds-m-around_medium" data-id="responseContainer">
+                </div>
+            </lightning-card>
+        </template>    
+    </lightning-card>
+    
+</template>   -->
+
+
+<template>
+    <lightning-card title="Chat with GPT" icon-name="utility:chat">
+        <div class="slds-m-around_small">
+            <lightning-input
+                onchange={inputChangeHandler}
+                label="Query"
+                placeholder="Ask anything">
+            </lightning-input>
+ 
+            <div class="slds-p-top_medium">
+                <lightning-button
+                    label="Search"
+                    variant="brand"
+                    onclick={onClickHandler}>
+                </lightning-button>
+            </div>
+        </div>
+ 
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+        </template>
+ 
+        <template if:true={getResponsefromGPT}>
+            <lightning-card class="slds-m-around_small">
+                <div class="slds-m-around_medium" data-id="responseContainer"></div>
             </lightning-card>
         </template>
     </lightning-card>
-    
 </template>
